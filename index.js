@@ -5,7 +5,8 @@ const cte = require('content-type-to-ext');
 
 const server = http.createServer((req, res) => {
     // Get the file path based on the requested URL
-    const filePath = path.join(__dirname, 'www', req.url);
+    const urlDecoded = decodeURIComponent(req.url);
+    const filePath = path.join(__dirname, 'www', urlDecoded);
 
     // Check if the file exists
     fs.access(filePath, fs.constants.F_OK, (err) => {
